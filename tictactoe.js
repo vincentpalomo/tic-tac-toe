@@ -40,7 +40,7 @@ function updateTile (tile, index) {
 
 // create function to change between player X and O
 function changePlayer () {
-    for (let i = 0; i < players.length; i++) {
+    // for (let i = 0; i < players.length; i++) {
         let playerX = players[0]
         let playerO = players[1]
         // console.log('player x:', playerX)
@@ -49,10 +49,10 @@ function changePlayer () {
         // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary
         if (currentPlayer == playerX) {
             currentPlayer = playerO;
-        } else if (currentPlayer == playerO) {
+        } else {
            currentPlayer = playerX;
         }
-    }
+    // }
 
 }
 
