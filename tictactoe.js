@@ -1,34 +1,51 @@
-let cells = document.querySelectorAll('.tile')
-console.log(cells)
+let tile = document.querySelectorAll(".tile");
+let statusText = document.querySelector("#statusText");
+let reset = document.querySelector("#reset");
 
-// const gameState = {
-//     players: ['x', 'o'],
-//     board: [
-//       [null, null, null],
-//       [null, null, null],
-//       [null, null, null]
-//     ]
-//   }
+let state = false;
 
-// // state
-// let state;
+let board = [null, null, null, null, null, null, null, null, null]
 
-// function buildInitialState() {
+let currentPlayer = "X"
 
-// }
+buildInitialState()
+  
+  
+function buildInitialState() {
+  tile.forEach(tile => tile.addEventListener('click', tileClicked))
+  console.log('clicked', tileClicked)
+  state = true;
+}
+  //function to get the input of the tile clicked
+function tileClicked () {
+  let tileIndex = this.getAttribute("data-class-index")
+  console.log("tile i:", tileIndex)
 
-// // render
+  updateTile(this, tileIndex);
+}
+  
+// create function to update tile of current player 
+function updateTile (tile, index) {
+  board[index] = currentPlayer;
+  tile.textContent = currentPlayer;
+}
+
+function changePlayer () {
+  for {player[i]) 
+}
+
+// render
 // function renderState() {
 
 // }
 
-// // maybe a dozen or so helper functions for tiny pieces of the interface
+// maybe a dozen or so helper functions for tiny pieces of the interface
 
-// // listeners
+// listeners
 // function onBoardClick() {
-//   // update state, maybe with another dozen or so helper functions...
+  // update state, maybe with another dozen or so helper functions...
 
-//   renderState() // show the user the new state
+// //   renderState() // show the user the new state
 // }
 // const board = document.getElementById('board');
 // board.addEventListener('click', onBoardClick); // etc

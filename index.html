@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="tictactoe.js"></script>
     <title>Tic Tac Toe</title>
 </head>
 <body>
@@ -14,23 +13,23 @@
             <h1>Tic Tac Toe</h1>
         </section>
         <section class="display">
-            Player <span class="display-player PlayerX">X</span>'s turn
+            <h2 id"statusText></h2>
         </section>
-        <section class="container"> <!-- container will hold the tic tac toe grid -->
-            <div class="tile"></div> <!-- tile will be for the tic tac toe x & o -->
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-        </section>
-        <section class="display announcer hide"></section>
+        <div class="container"> <!-- container will hold the tic tac toe grid -->
+            <div class="tile" data-class-index="0"></div> <!-- tile will be for the tic tac toe x & o -->
+            <div class="tile" data-class-index="1"></div>
+            <div class="tile" data-class-index="2"></div>
+            <div class="tile" data-class-index="3"></div>
+            <div class="tile" data-class-index="4"></div>
+            <div class="tile" data-class-index="5"></div>
+            <div class="tile" data-class-index="6"></div>
+            <div class="tile" data-class-index="7"></div>
+            <div class="tile" data-class-index="8"></div>
+        </div>
         <section class="controls">
             <button id="reset">Reset</button>
         </section>
-    </main>   
+    </main>
+    <script src="tictactoe.js"></script>   
 </body>
 </html>

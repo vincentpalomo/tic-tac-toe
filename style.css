@@ -16,26 +16,27 @@
     margin-bottom: 1em;
 }
 
-.hide {
-    display: none;
-}
 
 .container {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 33% 33% 33%;
-    max-width: 300px;
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+    /* background-color: ; */
+    /* color: black; */
+    border: 6px solid black;
+    /* border-radius: 10px; */
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 
 .tile {
-    border: 1px solid white;
+    border: 2px solid black;
     min-width: 100px;
     min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    font-size: 75px;
     cursor: pointer;
 }
 
