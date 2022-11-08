@@ -30,9 +30,9 @@ function updateTile (tile, index) {
   tile.textContent = currentPlayer;
 }
 
-function changePlayer () {
-  for {player[i]) 
-}
+// function changePlayer () {
+//   for {player[i]) 
+// }
 
 // render
 // function renderState() {
