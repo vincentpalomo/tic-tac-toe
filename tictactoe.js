@@ -16,11 +16,12 @@ let currentPlayer = "X"
 
 buildInitialState()
   
-  
+// function to start the game  
 function buildInitialState() {
   tile.forEach(tile => tile.addEventListener('click', tileClicked)) // adds an event on the tile clicked
   console.log('clicked', tileClicked)
   reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
+  statusText.textContent = `${currentPlayer}'s turn`;
   state = true; // setting true will make the game run
 }
   //function to get the input of the tile clicked
@@ -50,8 +51,10 @@ function changePlayer () {
         // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary
         if (currentPlayer == playerX) {
             currentPlayer = playerO;
+            statusText.textContent = `${currentPlayer}'s turn`
         } else {
            currentPlayer = playerX;
+           statusText.textContent = `${currentPlayer}'s turn`
         }
     // }
 
