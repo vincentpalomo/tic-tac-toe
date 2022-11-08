@@ -75,6 +75,7 @@ function resetGame () {
         [null, null, null]
     ];
     tile.forEach(tile => tile.textContent = "");
+    statusText.textContent = `${currentPlayer}'s turn`
     state = true;
 }
 
