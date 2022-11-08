@@ -18,29 +18,30 @@ buildInitialState()
   
   
 function buildInitialState() {
-  tile.forEach(tile => tile.addEventListener('click', tileClicked))
+  tile.forEach(tile => tile.addEventListener('click', tileClicked)) // adds an event on the tile clicked
   console.log('clicked', tileClicked)
-  reset.addEventListener('click', resetGame)
-  state = true;
+  reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
+  state = true; // setting true will make the game run
 }
   //function to get the input of the tile clicked
 function tileClicked () {
-  let tileIndex = this.getAttribute("data-class-index")
+  let tileIndex = this.getAttribute("data-class-index") // clicking on a tile will give the index set in the HTML
   console.log("tile i:", tileIndex)
 
-  updateTile(this, tileIndex);
+  updateTile(this, tileIndex); // calling the function for the board tile and index
 }
   
 // create function to update tile of current player 
 function updateTile (tile, index) {
-  board[index] = currentPlayer;
-  tile.textContent = currentPlayer;
+  board[[index]] = currentPlayer; // the index in the array will be update to the currentPlayer variable
+  // console.log("index value:", board[[index]])
+  tile.textContent = currentPlayer; // updates the text of the tile from either X or O
   changePlayer()
 }
 
 // create function to change between player X and O
 function changePlayer () {
-    // for (let i = 0; i < players.length; i++) {
+    // for (let i = 0; i < players.length; i++) { // don't need loop since we got the value using player[]
         let playerX = players[0]
         let playerO = players[1]
         // console.log('player x:', playerX)
