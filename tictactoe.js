@@ -24,17 +24,24 @@ function buildInitialState() {
   statusText.textContent = `${currentPlayer}'s turn`;
   state = true; // setting true will make the game run
 }
+
   //function to get the input of the tile clicked
-function tileClicked () {
+function tileClicked (event) {
   let tileIndex = this.getAttribute("data-class-index") // clicking on a tile will give the index set in the HTML
   console.log("tile i:", tileIndex)
+
+  let tile = event.target // gets the div in the HTML when you click on a tile
+  console.log('tile clicked:', tile)
+  if(tile.innerText != '') { // if there is a value in the string (X/O) you will not be able to click and switch the tile from either player
+    return;
+  }
 
   updateTile(this, tileIndex); // calling the function for the board tile and index
 }
   
 // create function to update tile of current player 
 function updateTile (tile, index) {
-  board[[index]] = currentPlayer; // the index in the array will be update to the currentPlayer variable
+  board[index] = currentPlayer; // the index in the array will be update to the currentPlayer variable
   // console.log("index value:", board[[index]])
   tile.textContent = currentPlayer; // updates the text of the tile from either X or O
   changePlayer()
@@ -48,13 +55,13 @@ function changePlayer () {
         // console.log('player x:', playerX)
         // console.log('player o:', playerO)
         console.log('currentplayer:', currentPlayer)
-        // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary
-        if (currentPlayer == playerX) {
-            currentPlayer = playerO;
-            statusText.textContent = `${currentPlayer}'s turn`
+        // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary       
+        if (currentPlayer === playerX) {
+          currentPlayer = playerO;
+          statusText.textContent = `${currentPlayer}'s turn`
         } else {
-           currentPlayer = playerX;
-           statusText.textContent = `${currentPlayer}'s turn`
+          currentPlayer = playerX;
+          statusText.textContent = `${currentPlayer}'s turn`
         }
     // }
 
@@ -68,14 +75,14 @@ function changePlayer () {
 
 // function to reset game
 function resetGame () {
-    currentPlayer = "X";
+    currentPlayer = "X"; // sets the player to default X
     board = [
-        [null, null, null], 
+        [null, null, null],  // clears the board of all values and returns to null
         [null, null, null], 
         [null, null, null]
     ];
-    tile.forEach(tile => tile.textContent = "");
-    statusText.textContent = `${currentPlayer}'s turn`
+    tile.forEach(tile => tile.textContent = ""); // returns the tiles (<div>X</div> --> <div></div>) to an empty element in HTML
+    statusText.textContent = `${currentPlayer}'s turn` //displays current player to X
     state = true;
 }
 
