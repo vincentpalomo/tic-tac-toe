@@ -1,18 +1,23 @@
-let tile = document.querySelectorAll(".tile");
-let statusText = document.querySelector("#statusText");
-let reset = document.querySelector("#reset");
+let tile = document.querySelectorAll(".tile"); // get all the div tags with the tile class
+let statusText = document.querySelector("#statusText"); // get the display for which players turn
+let reset = document.querySelector("#reset"); // get the button for reset
 
-let state = false;
+let state = false; // running state of the board
 
+// board of the tic tac toe in an array
 let board = [
     [null, null, null], 
     [null, null, null], 
     [null, null, null]
 ]
 
+// players in the game
 let players = ["X", "O"]
 
+//default player when starting the game will be X
 let currentPlayer = "X"
+
+// set win condition for the array?
 
 buildInitialState()
   
@@ -58,13 +63,20 @@ function changePlayer () {
         // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary       
         if (currentPlayer === playerX) {
           currentPlayer = playerO;
-          statusText.textContent = `${currentPlayer}'s turn`
+          statusText.textContent = `${currentPlayer}'s turn` // display player O turn
         } else {
           currentPlayer = playerX;
-          statusText.textContent = `${currentPlayer}'s turn`
+          statusText.textContent = `${currentPlayer}'s turn` // display player X turn
         }
     // }
+    checkWinner()
+}
 
+
+// check winner function
+function checkWinner () {
+  let tileValues = board
+  console.log ('tile index 0:', tileValues[0], 'tile index 1:', tileValues[1], 'tile index 2:', tileValues[2], 'tile index 3:', tileValues[3])
 }
 
 // changePlayer()
