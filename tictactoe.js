@@ -76,7 +76,7 @@ function changePlayer () {
 // check winner function
 function checkWinner () {
   let tileValues = board
-  console.log ('tile index 0:', tileValues[0], 'tile index 1:', tileValues[1], 'tile index 2:', tileValues[2], 'tile index 3:', tileValues[3])
+
 }
 
 // changePlayer()

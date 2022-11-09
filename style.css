@@ -18,12 +18,12 @@
 
 
 .container {
-	width: 500px;
-	height: 500px;
+	width: 400px;
+	height: 400px;
 	margin: 0 auto;
     /* background-color: ; */
     /* color: black; */
-    border: 6px solid black;
+    /* border: 6px solid black; */
     /* border-radius: 10px; */
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
@@ -59,4 +59,26 @@
 #reset {
     padding: 8px;
     border-radius: 8px;
+}
+
+/* gets rid of the border around the tiles */
+
+.tile:first-child,
+.tile:nth-child(2),
+.tile:nth-child(3) {
+    border-top: none;
+}
+
+.tile:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.tile:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.tile:last-child,
+.tile:nth-child(8),
+.tile:nth-child(7) {
+    border-bottom: none;
 }
