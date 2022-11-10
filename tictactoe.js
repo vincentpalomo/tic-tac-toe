@@ -19,6 +19,7 @@ let currentPlayer = "X"
 
 // set win condition for the array?
 
+
 buildInitialState()
   
 // function to start the game  
@@ -37,11 +38,14 @@ function tileClicked (event) {
 
   let tile = event.target // gets the div in the HTML when you click on a tile
   console.log('tile clicked:', tile)
+  tile.id = `${currentPlayer}` // will add the <div id="x" or "o" ... 
   if(tile.innerText != '') { // if there is a value in the string (X/O) you will not be able to click and switch the tile from either player
     return;
   }
 
   updateTile(this, tileIndex); // calling the function for the board tile and index
+  console.log('this is:', this)
+  console.log('tileIndex is:', tileIndex)
 }
   
 // create function to update tile of current player 
@@ -75,11 +79,12 @@ function changePlayer () {
 
 // check winner function
 function checkWinner () {
-  let tileValues = board
+  let tileValues = board // will give back an array with all the values set when you click on a tile
+  console.log('tile values:', tileValues) 
 
 }
 
-// changePlayer()
+
 // render
 // function renderState() {
 
