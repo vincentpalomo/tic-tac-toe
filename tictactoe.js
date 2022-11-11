@@ -76,6 +76,16 @@ function changePlayer () {
     checkWinner()
 }
 
+//winning boxes = 
+// [0,1,2]row
+// [3,4,5]row
+// [6,7,8]row
+// [0,3,6]column
+// [1,4,7]column
+// [2,5,8]column
+// [0,4,8]diagonally 
+// [2,4,6]anti-diagonally
+
 
 // check winner function
 function checkWinner () {
@@ -84,12 +94,19 @@ function checkWinner () {
   let playerO = players[1]
   console.log('tile values:', tileValues) 
   console.log("tile value index 0:", tileValues[0])
-   if (tileValues[0] && tileValues[0] === tileValues[1] && tileValues[1] === tileValues[2]) { // make own function for true or false
+   if (tileValues[0] && tileValues[0] === tileValues[1] && tileValues[1] === tileValues[2] || //rows
+       tileValues[3] && tileValues[3] === tileValues[4] && tileValues[4] === tileValues[5] ||
+       tileValues[6] && tileValues[6] === tileValues[7] && tileValues[7] === tileValues[8] ||
+       tileValues[0] && tileValues[0] === tileValues[3] && tileValues[3] === tileValues[6] || //columns
+       tileValues[1] && tileValues[1] === tileValues[4] && tileValues[4] === tileValues[7] ||
+       tileValues[2] && tileValues[2] === tileValues[5] && tileValues[5] === tileValues[8] ||
+       tileValues[0] && tileValues[0] === tileValues[4] && tileValues[4] === tileValues[8] || //diagonals
+       tileValues[2] && tileValues[2] === tileValues[4] && tileValues[4] === tileValues[6] ) { // make own function for true or false
     console.log('currentplayer:', currentPlayer)
     if (currentPlayer !== playerX) {
-    statusText.textContent = `X winner!`
+    statusText.textContent = `X wins!`
    }else if (currentPlayer !== playerO) {
-    statusText.textContent = `O winner`
+    statusText.textContent = `O wins!`
    }
    return;
 
