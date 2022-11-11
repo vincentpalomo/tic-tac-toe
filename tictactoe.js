@@ -88,35 +88,92 @@ function changePlayer () {
 
 
 // check winner function
+// function checkWinner () {
+//   let tileValues = board // will give back an array with all the values set when you click on a tile
+//   let playerX = players[0]
+//   let playerO = players[1]
+//   console.log('tile values:', tileValues) 
+//   console.log("tile value index 0:", tileValues[0])
+//   if (tileValues[0] && tileValues[0] === tileValues[1] && tileValues[1] === tileValues[2] || //rows
+//       tileValues[3] && tileValues[3] === tileValues[4] && tileValues[4] === tileValues[5] ||
+//       tileValues[6] && tileValues[6] === tileValues[7] && tileValues[7] === tileValues[8] ||
+//       tileValues[0] && tileValues[0] === tileValues[3] && tileValues[3] === tileValues[6] || //columns
+//       tileValues[1] && tileValues[1] === tileValues[4] && tileValues[4] === tileValues[7] ||
+//       tileValues[2] && tileValues[2] === tileValues[5] && tileValues[5] === tileValues[8] ||
+//       tileValues[0] && tileValues[0] === tileValues[4] && tileValues[4] === tileValues[8] || //diagonals
+//       tileValues[2] && tileValues[2] === tileValues[4] && tileValues[4] === tileValues[6] ) { // make own function for true or false
+//       if (tileValues[0] && tileValues[1] && tileValues[2] && tileValues[3] && tileValues[4] && tileValues[5] && tileValues[6] && tileValues[7] && tileValues[8]) {
+//           statusText.textContent = `Draw!`
+//         }    
+//     console.log('currentplayer:', currentPlayer)
+//     if (currentPlayer !== playerX) {
+//     statusText.textContent = `X wins!`
+//    }else if (currentPlayer !== playerO) {
+//     statusText.textContent = `O wins!`
+//    }else {
+//     statusText.textContent = `Draw!`
+//    }
+
+//   }
+
+// }
+let winner = null;
+
 function checkWinner () {
-  let tileValues = board // will give back an array with all the values set when you click on a tile
-  let playerX = players[0]
-  let playerO = players[1]
-  console.log('tile values:', tileValues) 
-  console.log("tile value index 0:", tileValues[0])
-   if (tileValues[0] && tileValues[0] === tileValues[1] && tileValues[1] === tileValues[2] || //rows
-       tileValues[3] && tileValues[3] === tileValues[4] && tileValues[4] === tileValues[5] ||
-       tileValues[6] && tileValues[6] === tileValues[7] && tileValues[7] === tileValues[8] ||
-       tileValues[0] && tileValues[0] === tileValues[3] && tileValues[3] === tileValues[6] || //columns
-       tileValues[1] && tileValues[1] === tileValues[4] && tileValues[4] === tileValues[7] ||
-       tileValues[2] && tileValues[2] === tileValues[5] && tileValues[5] === tileValues[8] ||
-       tileValues[0] && tileValues[0] === tileValues[4] && tileValues[4] === tileValues[8] || //diagonals
-       tileValues[2] && tileValues[2] === tileValues[4] && tileValues[4] === tileValues[6] ) { // make own function for true or false
-    console.log('currentplayer:', currentPlayer)
-    if (currentPlayer !== playerX) {
-    statusText.textContent = `X wins!`
-   }else if (currentPlayer !== playerO) {
-    statusText.textContent = `O wins!`
-   }
-   return;
+  let tileValues = board
 
+  row1 = [tileValues[0], tileValues[1], tileValues[2]]
+  row2 = [tileValues[3], tileValues[4], tileValues[5]]
+  row3 = [tileValues[6], tileValues[7], tileValues[8]]
 
+  col1 = [tileValues[0], tileValues[3], tileValues[6]]
+  col2 = [tileValues[1], tileValues[4], tileValues[7]]
+  col3 = [tileValues[2], tileValues[5], tileValues[8]]
+
+  dia1 = [tileValues[0], tileValues[4], tileValues[8]]
+  dia2 = [tileValues[2], tileValues[4], tileValues[6]]
+  
+  console.log('rows', row1, row2, row3)
+  console.log('cols', col1, col2, col3)
+  console.log('dia', dia1, dia2)
+
+  // see if rows are true
+  if (row1[0] && row1[0] === row1[1] && row1[1] === row1[2]) {
+    winner = row1[0];
+    console.log('winner in row1', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (row2[0] && row2[0] === row2[1] && row2[1] === row2[2]) {
+    winner = row2[0];
+    console.log('winner in row2', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (row3[0] && row3[0] === row3[1] && row3[1] === row3[2]) {
+    winner = row3[0];
+    console.log('winner in row3', winner)
+    statusText.textContent = `${winner} wins!`
+  } else if (col1[0] && col1[0] === col1[1] && col1[1] === col1[2]) {
+    winner = col1[0];
+    console.log('winner in col1', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (col2[0] && col2[0] === col2[1] && col2[1] === col2[2]) {
+    winner = col2[0];
+    console.log('winner in col2', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (col3[0] && col3[0] === col3[1] && col3[1] === col3[2]) {
+    winner = col3[0];
+    console.log('winner in col3', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (dia1[0] && dia1[0] === dia1[1] && dia1[1] === dia1[2]) {
+    winner = dia1[0];
+    console.log('winner in dia1', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (dia2[0] && dia2[0] === dia2[1] && dia2[1] === dia2[2]) {
+    winner = dia2[0];
+    console.log('winner in dia2', winner);
+    statusText.textContent = `${winner} wins!`;
+  } else if (tileValues[0] && tileValues[1] && tileValues[2] && tileValues[3] && tileValues[4] && tileValues[5] && tileValues[6] && tileValues[7] && tileValues[8]) {
+    statusText.textContent = `Draw!`
+  }
 }
-
-}
-
-
-
 // render
 // function renderState() {
 
