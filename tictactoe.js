@@ -80,9 +80,24 @@ function changePlayer () {
 // check winner function
 function checkWinner () {
   let tileValues = board // will give back an array with all the values set when you click on a tile
+  let playerX = players[0]
+  let playerO = players[1]
   console.log('tile values:', tileValues) 
+  console.log("tile value index 0:", tileValues[0])
+   if (tileValues[0] && tileValues[0] === tileValues[1] && tileValues[1] === tileValues[2]) { // make own function for true or false
+    console.log('currentplayer:', currentPlayer)
+    if (currentPlayer !== playerX) {
+    statusText.textContent = `X winner!`
+   }else if (currentPlayer !== playerO) {
+    statusText.textContent = `O winner`
+   }
+   return;
+
 
 }
+
+}
+
 
 
 // render
