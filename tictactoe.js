@@ -6,9 +6,9 @@ let state = false; // running state of the board
 
 // board of the tic tac toe in an array
 let board = [
-    [null, null, null], 
-    [null, null, null], 
-    [null, null, null]
+    [null, null, null, 
+    null, null, null, 
+    null, null, null]
 ]
 
 // players in the game
@@ -74,6 +74,9 @@ function changePlayer () {
         }
     // }
     checkWinner()
+    if (state === false) {
+      document.getElementById
+    }
 }
 
 //winning boxes = 
@@ -121,6 +124,7 @@ let winner = null;
 
 function checkWinner () {
   let tileValues = board
+  console.log('board',board)
 
   row1 = [tileValues[0], tileValues[1], tileValues[2]]
   row2 = [tileValues[3], tileValues[4], tileValues[5]]
@@ -134,8 +138,8 @@ function checkWinner () {
   dia2 = [tileValues[2], tileValues[4], tileValues[6]]
   
   console.log('rows', row1, row2, row3)
-  console.log('cols', col1, col2, col3)
-  console.log('dia', dia1, dia2)
+  // console.log('cols', col1, col2, col3)
+  // console.log('dia', dia1, dia2)
 
   // see if rows are true
   if (row1[0] && row1[0] === row1[1] && row1[1] === row1[2]) {
@@ -183,9 +187,9 @@ function checkWinner () {
 function resetGame () {
     currentPlayer = "X"; // sets the player to default X
     board = [
-        [null, null, null],  // clears the board of all values and returns to null
-        [null, null, null], 
-        [null, null, null]
+        [null, null, null,  // clears the board of all values and returns to null
+        null, null, null, 
+        null, null, null]
     ];
     tile.forEach(tile => tile.textContent = ""); // returns the tiles (<div>X</div> --> <div></div>) to an empty element in HTML
     statusText.textContent = `${currentPlayer}'s turn` //displays current player to X
