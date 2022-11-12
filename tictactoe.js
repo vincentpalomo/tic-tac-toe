@@ -1,6 +1,8 @@
 let tile = document.querySelectorAll(".tile"); // get all the div tags with the tile class
 let statusText = document.querySelector("#statusText"); // get the display for which players turn
 let reset = document.querySelector("#reset"); // get the button for reset
+let playerNameX = document.querySelector('#playerX');
+let playerNameO = document.querySelector('#playerO')
 
 let state = false; // running state of the board
 
@@ -14,15 +16,17 @@ let board = [
 // players in the game
 let players = ["X", "O"]
 
+let playerNamesArray = []
+
+
 //default player when starting the game will be X
 let currentPlayer = "X"
 
 // array of number for the computer
+// let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
 
-// let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-
-buildInitialState()
+// buildInitialState()
   
 // function to start the game  
 function buildInitialState() {
@@ -30,6 +34,7 @@ function buildInitialState() {
   console.log('clicked', tileClicked)
   reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
   statusText.textContent = `${currentPlayer}'s turn`;
+  playerNameX.style.color = 'red'
   state = true; // setting true will make the game run
 }
 
@@ -73,9 +78,13 @@ function changePlayer () {
         if (currentPlayer === playerX) {
           currentPlayer = playerO;
           statusText.textContent = `${currentPlayer}'s turn` // display player O turn
+          playerNameO.style.color = 'red'
+          playerNameX.style.color = 'black'
         } else {
           currentPlayer = playerX;
           statusText.textContent = `${currentPlayer}'s turn` // display player X turn
+          playerNameO.style.color = 'black'
+          playerNameX.style.color = 'red'
         }
     // }
     checkWinner()
@@ -139,7 +148,7 @@ function checkWinner () {
   dia1 = [tileValues[0], tileValues[4], tileValues[8]]
   dia2 = [tileValues[2], tileValues[4], tileValues[6]]
   
-  console.log('rows', row1, row2, row3)
+  // console.log('rows', row1, row2, row3)
   // console.log('cols', col1, col2, col3)
   // console.log('dia', dia1, dia2)
 
@@ -148,46 +157,100 @@ function checkWinner () {
     winner = row1[0];
     console.log('winner in row1', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (row2[0] && row2[0] === row2[1] && row2[1] === row2[2]) {
     winner = row2[0];
     console.log('winner in row2', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (row3[0] && row3[0] === row3[1] && row3[1] === row3[2]) {
     winner = row3[0];
     console.log('winner in row3', winner)
     statusText.textContent = `${winner} wins!`
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (col1[0] && col1[0] === col1[1] && col1[1] === col1[2]) {
     winner = col1[0];
     console.log('winner in col1', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (col2[0] && col2[0] === col2[1] && col2[1] === col2[2]) {
     winner = col2[0];
     console.log('winner in col2', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (col3[0] && col3[0] === col3[1] && col3[1] === col3[2]) {
     winner = col3[0];
     console.log('winner in col3', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (dia1[0] && dia1[0] === dia1[1] && dia1[1] === dia1[2]) {
     winner = dia1[0];
     console.log('winner in dia1', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (dia2[0] && dia2[0] === dia2[1] && dia2[1] === dia2[2]) {
     winner = dia2[0];
     console.log('winner in dia2', winner);
     statusText.textContent = `${winner} wins!`;
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
     state = false;
   } else if (tileValues[0] && tileValues[1] && tileValues[2] && tileValues[3] && tileValues[4] && tileValues[5] && tileValues[6] && tileValues[7] && tileValues[8]) {
     statusText.textContent = `Draw!`
+    statusText.style.color = 'red'
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
   }
 }
+
+
+
+// create function for playerNames inputs
+function playerNames () {
+
+  let text;
+  let playerX = prompt('Player X:')
+  if (playerX == null || playerX == "") {
+    text = `Player X`;
+  } else {
+    text = `Player X: \n ${playerX}`;
+  }
+  document.getElementById('playerX').innerText = text;
+  playerNamesArray.push(playerX)
+  
+  let playerO = prompt('Player O:')
+  if (playerO == null || playerO == "") {
+    text = `Player O`;
+  } else {
+    text = `Player O: \n ${playerO}`
+  }
+  document.getElementById('playerO').innerText = text;
+  playerNamesArray.push(playerO)
+  console.log('player added:', playerNamesArray)
+}
+
 
 // // make a computer
 // let random = Math.floor(Math.random() * 9 - 1);
@@ -211,8 +274,13 @@ function resetGame () {
         null, null, null]
     ];
     tile.forEach(tile => tile.textContent = ""); // returns the tiles (<div>X</div> --> <div></div>) to an empty element in HTML
-    statusText.textContent = `${currentPlayer}'s turn` //displays current player to X
-    state = true;
+    statusText.textContent = `Press Start!` //displays current player to X
+    statusText.style.color = 'black'
+    playerNameO.innerText = `Player O`
+    playerNameX.innerText = `Player X`
+    playerNameO.style.color = 'black'
+    playerNameX.style.color = 'black'
+    state = false;
 }
 
 // maybe a dozen or so helper functions for tiny pieces of the interface
