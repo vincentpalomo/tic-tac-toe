@@ -21,10 +21,10 @@ let playerNamesArray = []
 
 //default player when starting the game will be X
 let currentPlayer = "X"
-let computer = "O"
+// let computer = "O"
 
-// array of number for the computer
-let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+// // array of number for the computer
+// let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
 
 
 // buildInitialState()
