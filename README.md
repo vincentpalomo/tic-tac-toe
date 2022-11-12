@@ -8,11 +8,11 @@ Tic-Tac-Toe
 As users playing a two player game we want to:
 
     enter our names and have them displayed
-    have our order chosen for us by the game
-    take turns placing our marks in empty spaces
-    not be able to place our marks in an occupied space
-    be told when a move causes a player to win, or to draw
-    start the game over without having to reset the browser
+    have our order chosen for us by the game ✔
+    take turns placing our marks in empty spaces ✔
+    not be able to place our marks in an occupied space ✔
+    be told when a move causes a player to win, or to draw ✔
+    start the game over without having to reset the browser ✔
 
 As a user playing a one player game I want to:
 

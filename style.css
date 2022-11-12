@@ -40,14 +40,6 @@
     cursor: pointer;
 }
 
-.playerX {
-    color: blueviolet;
-}
-
-.playerO {
-    color: aqua;
-}
-
 .controls {
     display: flex;
     flex-direction: row;
@@ -56,10 +48,29 @@
     margin-top: 1em;
 }
 
-#reset {
-    padding: 8px;
-    border-radius: 8px;
+.players {
+    margin: auto;
 }
+
+#reset {
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 14px 24px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 200ms,background 200ms;
+    background: transparent;
+    color: #000000;
+    box-shadow: 0 0 0 3px #000000 inset;
+}
+
+#reset:hover{
+    transform: translateY(-2px);
+} 
 
 /* gets rid of the border around the tiles */
 
