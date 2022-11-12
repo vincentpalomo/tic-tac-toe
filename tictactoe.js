@@ -21,9 +21,10 @@ let playerNamesArray = []
 
 //default player when starting the game will be X
 let currentPlayer = "X"
+let computer = "O"
 
 // array of number for the computer
-// let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
 
 
 // buildInitialState()
@@ -73,7 +74,7 @@ function changePlayer () {
         let playerO = players[1]
         // console.log('player x:', playerX)
         // console.log('player o:', playerO)
-        console.log('currentplayer:', currentPlayer)
+        // console.log('currentplayer:', currentPlayer)
         // currentPlayer = (currentPlayer == "X") ? "O" : "X"; // ternary       
         if (currentPlayer === playerX) {
           currentPlayer = playerO;
@@ -88,6 +89,8 @@ function changePlayer () {
         }
     // }
     checkWinner()
+    // computerMoves()
+    
 }
 
 //winning boxes = 
@@ -252,13 +255,36 @@ function playerNames () {
 }
 
 
-// // make a computer
-// let random = Math.floor(Math.random() * 9 - 1);
-// console.log('random',random)
-// let computer = players[1]
-// let computerIndex = computerArray[random]
-// console.log(computerIndex)
-// tile[computerIndex - 1].classList.add('computer')
+// make a computer
+// function computerMoves () {
+//   if (state === false){
+//     return
+//   }
+//   let random = Math.floor(Math.random() * 9);
+//   // console.log('random',random)
+//   // let computer = players[1]
+//   let computerIndex = computerArray[random]
+//   console.log('placed O index:', computerIndex)
+//   if (currentPlayer === "O") {
+//     if (tile.innerText == "X"){
+//       return
+//     }
+//     tile[computerIndex - 1].innerText = currentPlayer
+//     console.log('current player', currentPlayer)
+//     checkWinner()
+
+//   }
+//   if (currentPlayer === "O") {
+//     currentPlayer = players[0]
+//     console.log('current player:',currentPlayer)
+//     statusText.textContent = `${currentPlayer}'s turn`
+//     playerNameO.style.color = 'black'
+//     playerNameX.style.color = 'red'
+//   }
+  
+  
+// }
+
 
 // render
 // function renderState() {
