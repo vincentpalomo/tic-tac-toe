@@ -6,6 +6,8 @@ let playerNameO = document.querySelector('#playerO')
 
 let state = false; // running state of the board
 
+let winner = null;
+
 // board of the tic tac toe in an array
 let board = [
     [null, null, null, 
@@ -25,6 +27,9 @@ let computer = "O"
 
 // // array of number for the computer
 let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+let randomNumberGenerated = []
+
+
 
 
 // buildInitialState()
@@ -134,7 +139,7 @@ function changePlayer () {
 //   }
 
 // }
-let winner = null;
+
 
 function checkWinner () {
   let tileValues = board
@@ -260,17 +265,20 @@ function computerMoves () {
   if (state === false){
     return
   }
-  let random = Math.floor(Math.random() * 9);
+  let random = Math.floor(Math.random() * computerArray.length);
   // console.log('random',random)
   // let computer = players[1]
   let computerIndex = computerArray[random]
+  randomNumberGenerated.push(computerIndex)
   console.log('computer move:', computerIndex)
-  if (tile.innerText == "X" || tile.innerText == "O"){
+  console.log('stored random number', randomNumberGenerated)
+  if (tile.innerText == "X" || tile.innerText == "O" || randomNumberGenerated){
     computerMoves()
   }
   if (currentPlayer === "O") {
     tile[computerIndex - 1].innerText = currentPlayer
     console.log('current player', currentPlayer)
+    tile.id = `${currentPlayer}`
     checkWinner()
 
   }
