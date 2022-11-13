@@ -296,10 +296,18 @@ function computerMoves() {
   }
   let randomIndex = randomNumber(0, computerNumberArray.length);
   let random = computerNumberArray[randomIndex]
-  computerNumberArray.splice(randomIndex, 1)
+  // computerNumberArray.splice(randomIndex, 1)
+  console.log('updated number array:', computerNumberArray)
   console.log('random number', random);
 
-  if (tile[random].innerText == "X" || tile[random].innerText == "O") {
+  // if (tile[random].innerText == "X" || tile[random].innerText == "O") {
+  //   console.log('tile has value: yes & reroll')
+  //   computerMoves()
+  // } else {
+  //   console.log('tile has value: no')
+  // }
+
+  if (board[0][random] == "X" || board[0][random] == "O") {
     console.log('tile has value: yes & reroll')
     computerMoves()
   } else {
