@@ -52,6 +52,7 @@ function computerState() {
   // console.log('clicked', tileClicked)
   reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
   statusText.textContent = `${currentPlayer}'s turn`;
+  playerNameO.innerText = `Computer`
   playerNameX.style.color = 'red'
   state = true; // setting true will make the game run
   computer = true; // will set the computer to run in the change player function
@@ -108,7 +109,10 @@ function changePlayer () {
     // }
     if (computer == true) {
       console.log('computer enabled')
-      computerMoves()
+      setTimeout(() => {
+        computerMoves()
+        checkWinner()
+      }, 1000);
     } else {
       console.log('computer disabled')
     }
