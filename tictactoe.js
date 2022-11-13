@@ -25,7 +25,7 @@ let playerNamesArray = []
 
 //default player when starting the game will be X
 let currentPlayer = "X"
-let computer = "O"
+let computer = false;
 
 // // array of number for the computer
 let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
@@ -44,6 +44,17 @@ function buildInitialState() {
   statusText.textContent = `${currentPlayer}'s turn`;
   playerNameX.style.color = 'red'
   state = true; // setting true will make the game run
+  computer = false;
+}
+
+function computerState() {
+  tile.forEach(tile => tile.addEventListener('click', tileClicked)) // adds an event on the tile clicked
+  // console.log('clicked', tileClicked)
+  reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
+  statusText.textContent = `${currentPlayer}'s turn`;
+  playerNameX.style.color = 'red'
+  state = true; // setting true will make the game run
+  computer = true; // will set the computer to run in the change player function
 }
 
   //function to get the input of the tile clicked
@@ -95,9 +106,13 @@ function changePlayer () {
           playerNameX.style.color = 'red'
         }
     // }
-    computerMoves()
+    if (computer == true) {
+      console.log('computer enabled')
+      computerMoves()
+    } else {
+      console.log('computer disabled')
+    }
     checkWinner()
-    
 }
 
 //winning boxes = 
@@ -237,7 +252,6 @@ function checkWinner () {
 }
 
 
-
 // create function for playerNames inputs
 function playerNames () {
 
@@ -289,11 +303,14 @@ function computerRandomMoveArray (start, end) {
 let computerNumberArray = computerRandomMoveArray(0, 8);
 console.log('computer number array:', computerNumberArray)
 
+
+
 function computerMoves() {
   checkWinner()
   if (state === false) { // will stop when game is won
     return;
   }
+ 
   let randomIndex = randomNumber(0, computerNumberArray.length);
   let random = computerNumberArray[randomIndex]
   // computerNumberArray.splice(randomIndex, 1)
@@ -331,8 +348,48 @@ function computerMoves() {
 
 }
 
+// setTimeout(() => {
+//   checkWinner()
+//   if (state === false) { // will stop when game is won
+//     return;
+//   }
+ 
+//   let randomIndex = randomNumber(0, computerNumberArray.length);
+//   let random = computerNumberArray[randomIndex]
+//   // computerNumberArray.splice(randomIndex, 1)
+//   console.log('updated number array:', computerNumberArray)
+//   console.log('random number', random);
 
+//   // if (tile[random].innerText == "X" || tile[random].innerText == "O") {
+//   //   console.log('tile has value: yes & reroll')
+//   //   computerMoves()
+//   // } else {
+//   //   console.log('tile has value: no')
+//   // }
 
+//   if (board[0][random] == "X" || board[0][random] == "O" || random === undefined) {
+//     console.log('tile has value: yes & reroll')
+//     computerMoves()
+//   } else {
+//     console.log('tile has value: no')
+//   }
+
+//   if (currentPlayer === "O") {
+//     tile[random].innerText = currentPlayer
+//     board[0][random] = currentPlayer
+//     console.log('board update', board[0])
+//     console.log('after move', currentPlayer)
+//     tile.id = `${currentPlayer}`
+//   }
+//   if (currentPlayer === "O") {
+//     currentPlayer = players[0]
+//     console.log('current player:',currentPlayer)
+//     statusText.textContent = `${currentPlayer}'s turn`
+//     playerNameO.style.color = 'black'
+//     playerNameX.style.color = 'red'
+//   }
+
+// }, 1000)
 
 // make a computer
 // function computerMoves () {
@@ -378,6 +435,7 @@ function computerMoves() {
 // }
 
 // function to reset game
+
 function resetGame () {
     currentPlayer = "X"; // sets the player to default X
     board = [
@@ -393,6 +451,7 @@ function resetGame () {
     playerNameO.style.color = 'black'
     playerNameX.style.color = 'black'
     state = false;
+    computer = false;
 }
 
 // maybe a dozen or so helper functions for tiny pieces of the interface
