@@ -307,7 +307,7 @@ function computerMoves() {
   //   console.log('tile has value: no')
   // }
 
-  if (board[0][random] == "X" || board[0][random] == "O") {
+  if (board[0][random] == "X" || board[0][random] == "O" || random === undefined) {
     console.log('tile has value: yes & reroll')
     computerMoves()
   } else {
