@@ -259,6 +259,11 @@ function playerNames () {
   console.log('player added:', playerNamesArray)
 }
 
+// conditions for computer moves
+// check if tile has a value, if a value is in reroll the computer move
+// log random numbers in array and if the random number is duplicated reroll
+// place O in random index
+
 
 // make a computer
 function computerMoves () {
@@ -272,14 +277,16 @@ function computerMoves () {
   randomNumberGenerated.push(computerIndex)
   console.log('computer move:', computerIndex)
   console.log('stored random number', randomNumberGenerated)
-  if (tile.innerText == "X" || tile.innerText == "O" || randomNumberGenerated){
-    computerMoves()
+  if (tile.innerText == "X" || tile.innerText == "O" || randomNumberGenerated.indexOf(randomNumberGenerated)){
+    // computerMoves()
   }
   if (currentPlayer === "O") {
     tile[computerIndex - 1].innerText = currentPlayer
     console.log('current player', currentPlayer)
     tile.id = `${currentPlayer}`
+    computerArray.splice(computerIndex)
     checkWinner()
+    console.log('computer array update',computerArray)
 
   }
   if (currentPlayer === "O") {
