@@ -15,6 +15,8 @@ let board = [
     null, null, null]
 ]
 
+// console.log('board nested array', board[0])
+
 // players in the game
 let players = ["X", "O"]
 
@@ -27,7 +29,7 @@ let computer = "O"
 
 // // array of number for the computer
 let computerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
-let randomNumberGenerated = []
+
 
 
 
@@ -37,7 +39,7 @@ let randomNumberGenerated = []
 // function to start the game  
 function buildInitialState() {
   tile.forEach(tile => tile.addEventListener('click', tileClicked)) // adds an event on the tile clicked
-  console.log('clicked', tileClicked)
+  // console.log('clicked', tileClicked)
   reset.addEventListener('click', resetGame) // adds an event to reset the game to the empty board
   statusText.textContent = `${currentPlayer}'s turn`;
   playerNameX.style.color = 'red'
@@ -50,10 +52,10 @@ function tileClicked (event) {
     return
   }
   let tileIndex = this.getAttribute("data-class-index") // clicking on a tile will give the index set in the HTML
-  console.log("tile i:", tileIndex)
+  // console.log("tile i:", tileIndex)
 
   let tile = event.target // gets the div in the HTML when you click on a tile
-  console.log('tile clicked:', tile)
+  // console.log('tile clicked:', tile)
   tile.id = `${currentPlayer}` // will add the <div id="x" or "o" ... 
   if(tile.innerText != '') { // if there is a value in the string (X/O) you will not be able to click and switch the tile from either player
     return;
@@ -66,7 +68,7 @@ function tileClicked (event) {
   
 // create function to update tile of current player 
 function updateTile (tile, index) {
-  board[index] = currentPlayer; // the index in the array will be update to the currentPlayer variable
+  board[0][index] = currentPlayer; // the index in the array will be update to the currentPlayer variable
   // console.log("index value:", board[[index]])
   tile.textContent = currentPlayer; // updates the text of the tile from either X or O
   changePlayer()
@@ -93,8 +95,8 @@ function changePlayer () {
           playerNameX.style.color = 'red'
         }
     // }
-    checkWinner()
     computerMoves()
+    checkWinner()
     
 }
 
@@ -142,8 +144,8 @@ function changePlayer () {
 
 
 function checkWinner () {
-  let tileValues = board
-  console.log('board',board)
+  let tileValues = board[0]
+  // console.log('board',board)
 
   row1 = [tileValues[0], tileValues[1], tileValues[2]]
   row2 = [tileValues[3], tileValues[4], tileValues[5]]
@@ -230,6 +232,7 @@ function checkWinner () {
     statusText.style.color = 'red'
     playerNameO.style.color = 'black'
     playerNameX.style.color = 'black'
+    state = false;
   }
 }
 
@@ -259,35 +262,56 @@ function playerNames () {
   console.log('player added:', playerNamesArray)
 }
 
-// conditions for computer moves
-// check if tile has a value, if a value is in reroll the computer move
+
+// create a computerMove function
+// conditions for computer moves:
+// make a random number from 1-9 index of the board
 // log random numbers in array and if the random number is duplicated reroll
-// place O in random index
+// check if tile has a value, if a value is in the index reroll the computer move
+// place O in random index and update next pick to player X
 
+// helper function for random numbers
+function randomNumber(min, max) {
+  let step1 = max - min + 1;
+  let step2 = Math.random() * step1;
+  let result = Math.floor(step2) + min;
+  return result;
+}
 
-// make a computer
-function computerMoves () {
-  if (state === false){
-    return
+function computerRandomMoveArray (start, end) {
+  let randomNumberGenerated = [];
+  for(let i = start; i <= end; i++) {
+    randomNumberGenerated.push(i);
   }
-  let random = Math.floor(Math.random() * computerArray.length);
-  // console.log('random',random)
-  // let computer = players[1]
-  let computerIndex = computerArray[random]
-  randomNumberGenerated.push(computerIndex)
-  console.log('computer move:', computerIndex)
-  console.log('stored random number', randomNumberGenerated)
-  if (tile.innerText == "X" || tile.innerText == "O" || randomNumberGenerated.indexOf(randomNumberGenerated)){
-    // computerMoves()
+  return randomNumberGenerated;
+}
+
+let computerNumberArray = computerRandomMoveArray(0, 8);
+console.log('computer number array:', computerNumberArray)
+
+function computerMoves() {
+  checkWinner()
+  if (state === false) { // will stop when game is won
+    return;
   }
+  let randomIndex = randomNumber(0, computerNumberArray.length);
+  let random = computerNumberArray[randomIndex]
+  computerNumberArray.splice(randomIndex, 1)
+  console.log('random number', random);
+
+  if (tile[random].innerText == "X" || tile[random].innerText == "O") {
+    console.log('tile has value: yes & reroll')
+    computerMoves()
+  } else {
+    console.log('tile has value: no')
+  }
+
   if (currentPlayer === "O") {
-    tile[computerIndex - 1].innerText = currentPlayer
-    console.log('current player', currentPlayer)
+    tile[random].innerText = currentPlayer
+    board[0][random] = currentPlayer
+    console.log('board update', board[0])
+    console.log('after move', currentPlayer)
     tile.id = `${currentPlayer}`
-    computerArray.splice(computerIndex)
-    checkWinner()
-    console.log('computer array update',computerArray)
-
   }
   if (currentPlayer === "O") {
     currentPlayer = players[0]
@@ -296,9 +320,48 @@ function computerMoves () {
     playerNameO.style.color = 'black'
     playerNameX.style.color = 'red'
   }
-  
-  
+
 }
+
+
+
+
+// make a computer
+// function computerMoves () {
+//   if (state === false){
+//     return
+//   }
+//   let random = Math.floor(Math.random() * computerArray.length);
+//   // console.log('random',random)
+//   // let computer = players[1]
+//   let computerIndex = computerArray[random]
+//   randomNumberGenerated.push(computerIndex)
+//   console.log('computer move:', computerIndex)
+//   console.log('stored random number', randomNumberGenerated)
+//   if (tile.innerText == "X" || tile.innerText == "O" || randomNumberGenerated.indexOf(randomNumberGenerated)){
+//     // computerMoves()
+//   }
+//   if (currentPlayer === "O") {
+//     tile[computerIndex - 1].innerText = currentPlayer
+//     console.log('current player', currentPlayer)
+//     tile.id = `${currentPlayer}`
+//     computerArray.splice(computerIndex)
+//     checkWinner()
+//     console.log('computer array update',computerArray)
+
+//   }
+//   if (currentPlayer === "O") {
+//     currentPlayer = players[0]
+//     console.log('current player:',currentPlayer)
+//     statusText.textContent = `${currentPlayer}'s turn`
+//     playerNameO.style.color = 'black'
+//     playerNameX.style.color = 'red'
+//   }
+  
+  
+// }
+
+
 
 
 // render
